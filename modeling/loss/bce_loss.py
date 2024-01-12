@@ -13,12 +13,6 @@ def bce_ohem(logits, targets, ohem_ratio=0.3):
     logits_flat = logits.view(-1)
     targets_flat = targets.view(-1)
 
-    # Calculate binary cross-entropy loss
-    #  nn.BCEWithLogitsLoss apply sigmoid() internally 
-    #  add it manually if you are using nn.BCELoss.
-    #bce_loss = F.binary_cross_entropy_with_logits(logits_flat, targets_flat, reduction='none')
-    #bce_loss = F.binary_cross_entropy(logits_flat, targets_flat, reduction='none')
-
     loss = nn.BCEWithLogitsLoss(reduction='none')
     bce_loss = loss(logits_flat, targets_flat)
 
@@ -37,17 +31,3 @@ def bce_ohem(logits, targets, ohem_ratio=0.3):
 
 
     return loss
-
-def bce_loss_noOHEM(logits, targets, ohem_ratio=0.2):
-    # Flatten logits and targets to 1D tensors
-    logits_flat = logits.view(-1)
-    targets_flat = targets.view(-1)
-
-    # Calculate binary cross-entropy loss
-    #  nn.BCEWithLogitsLoss apply sigmoid() internally 
-    #  add it manually if you are using nn.BCELoss.
-    #bce_loss = F.binary_cross_entropy_with_logits(logits_flat, targets_flat, reduction='none')
-    bce_loss = F.binary_cross_entropy_with_logits(logits_flat, targets_flat, reduction='mean')
-
-
-    return bce_loss

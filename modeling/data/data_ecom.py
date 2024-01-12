@@ -6,8 +6,8 @@ from torch.utils.data import Dataset
 
 from PIL import Image 
 from modeling.data.generate_mask_bbox import LabelGeneration
-random.seed(1)
 
+random.seed(1)
 globaltest = []
 
 def collate_fn(batch):

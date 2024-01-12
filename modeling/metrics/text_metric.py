@@ -364,21 +364,3 @@ def recall(pred, target, thres=0.5):
 def iou_score(pred, target, thres=0.5):
     tp, fp, fn, tn = get_stats(pred, target, mode='binary', threshold=thres)
     return calc_iou_score(tp, fp, fn, tn, reduction="micro")
-
-# torch.manual_seed(0)
-
-# output = torch.randn([4,1,224,224])
-# target = torch.randn([4,1,224,224])
-# target2 = torch.randn([4,1,224,224]).round().long()
-
-# tp, fp, fn, tn = get_stats(output, target2, mode='binary', threshold=0.5)
-# iou = iou_score(tp, fp, fn, tn, reduction="micro")
-# f1_score = f1_score(tp, fp, fn, tn, reduction="micro")
-# precision = precision(tp, fp, fn, tn, reduction="micro")
-# recall =recall(tp, fp, fn, tn, reduction="micro")
-
-
-# print(iou)
-# print("f1 %f"%f1_score)
-# print(precision)
-# print(recall)

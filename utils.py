@@ -1,10 +1,8 @@
 import yaml
 import os
 import torch 
-import pandas as pd
 import argparse
 import csv
-
 
 def parse_args():
 
@@ -15,6 +13,7 @@ def parse_args():
     config = load_config(config_path)
 
     return config
+
 
 def load_config(config_name):
     with open(config_name) as file:
@@ -28,11 +27,13 @@ def create_logs(fieldnames, filepath):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
 
+
 def save_results(csv_path, results, fieldnames):
 
     with open(csv_path, 'a', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writerow(results)
+
 
 def save_checkpoint(config, epoch, model, optimizer, lr_scheduler):
     save_state = {'model': model.state_dict(),
@@ -42,8 +43,8 @@ def save_checkpoint(config, epoch, model, optimizer, lr_scheduler):
                   'config': config}
 
     save_path = os.path.join(config['OUTPUT']['OUT_PATH'],'model_{}.pt'.format(epoch))
-
     torch.save(save_state, save_path)
+
 
 def load_checkpoint(ckpt_path, model, optimizer, scheduler):
 
@@ -55,6 +56,7 @@ def load_checkpoint(ckpt_path, model, optimizer, scheduler):
     scheduler.load_state_dict(checkpoint['lr_scheduler'])
 
     return model, optimizer, scheduler, checkpoint['epoch']
+
 
 class AverageMeter:
     """Computes and stores the average and current value"""

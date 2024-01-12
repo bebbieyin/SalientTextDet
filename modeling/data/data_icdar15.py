@@ -6,6 +6,7 @@ from torch.utils.data import Dataset
 
 from PIL import Image 
 from modeling.data.generate_mask_bbox import LabelGeneration
+
 random.seed(1)
 
 # get sample numbers from icdar15 files
