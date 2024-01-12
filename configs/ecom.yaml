@@ -1,0 +1,48 @@
+MODEL:
+  BACKBONE_CFG: './modeling/swin_fpn/swintransformer_fpn.yaml'
+
+TRAIN:
+  # RESUME TRAINING IF ANY
+  PRETRAINED :  './output/model_160.pt'
+
+  # Training settings
+  BATCH_SIZE: 4 # batch size must be > 1
+  NUM_WORKERS: 4
+  PIN_MEMORY: True
+  EPOCHS: 200
+  WARMUP_EPOCHS : 20
+  BASE_LR: 5e-4
+  MIN_LR :  5e-6
+  WARMUP_LR : 5e-7
+  WEIGHT_DECAY: 0.05
+
+  # OPTIMIZER
+  OPTIMIZER: 
+    NAME:  'adamw'
+    MOMENTUM: 0.9
+    EPS : 1e-8
+    BETAS : (0.9, 0.999)
+
+  # LR SCHEDULER
+  LR_SCHEDULER:
+    NAME: 'cosine'
+    STEP_SIZE : 30
+    # LR decay rate, used in StepLRScheduler
+    DECAY_RATE : 0.1
+    # Epoch interval to decay LR, used in StepLRScheduler
+    DECAY_EPOCHS: 30
+
+  
+INPUT:
+  DATASET : 'ECOMMERCE' 
+  DATA_PATH :  '/home/yinyin/salient_text/dataset/ECdata'
+  SALIENCY: True # whether to include saliency, dataset other that ECOM should be false
+  TRAIN_NUM_DATA : 871
+  TEST_NUM_DATA : 101
+  SIZE : 224
+
+OUTPUT:
+  OUT_PATH : './output/ecom_salient_text'
+  LOGS_FILENAME : 'logs.csv'
+  PROB_THRESH: 0.5
+

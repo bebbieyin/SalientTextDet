@@ -1,0 +1,5 @@
+MODEL:
+  BACKBONE:
+    NAME: "build_swint_backbone"
+  SWINT:
+    OUT_FEATURES: ["stage2", "stage3", "stage4", "stage5"]

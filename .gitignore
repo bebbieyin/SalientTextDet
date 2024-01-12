@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+__pycache__/
+modeling/__pycache__/
+modeling/data/__pycache__/
+modeling/loss/__pycache__/
+modeling/metrics/__pycache__/
+modeling/swin_fpn/__pycache__/
